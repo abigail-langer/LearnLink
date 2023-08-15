@@ -129,7 +129,7 @@ nav .navigation ul li a:hover{
 /* features */
 #features {
     background-color: #f3f8f6;
-    padding: 1vw 8vw 10vw 8vw;
+    padding: 1vw 8vw 35vw 8vw;
     text-align: center;
 }
 
@@ -151,9 +151,86 @@ nav .navigation ul li a:hover{
     font-weight: 600;
     color: rgb(0, 0, 255);
 }
-/* course */
+/* discipline */
+#discipline {
+    background-color: #f3f8f6;
+    padding: 1vw 8vw 35vw 8vw;
+    text-align: center;
+}
+
+#discipline .dis-base {
+    display: grid;
+    grid-template-columns: repeat(center, minmax(320px, 0fr));
+    grid-gap: 1rem;
+}
+
+#discipline .dis-box {
+    background-color: #e6e6e6;
+    text-align: center;
+    padding: 5px 5px;
+
+}
+
+#discipline .dis-box h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(0, 0, 255);
+}
 
 /* registration */
+#registration {
+    background-color: #f3f8f6;
+    padding: 1vw 8vw 10vw 8vw;
+    text-align: auto-fit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#registration .info {
+    color: #fff;
+} 
+
+#registration .info h1 {
+    color: "blue";
+} 
+
+#registration .form {
+    color: "blue";
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.15);
+} 
+
+#registration .form input{
+    margin: 15px 0;
+    padding: 15px 10px;
+    border: 1px solid rgb(3, 43, 95);
+} 
+
+#registration .form a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    background-color: #dfd9d9;
+    padding: 1px 10px;
+    font-weight: 400;
+    border-radius: 10px;
+}
+
+#registration .form a.submit {
+    color: #fff;
+    background: rgb(0, 0, 255);
+    transition: 0.3s ease;
+}
+
+#registration .form a.submit:hover {
+    color: rgb(0, 0, 255);
+    background: #fff;
+}
+
 
 /* experts */
 
