@@ -2,6 +2,7 @@ const fs = require('fs');
 const mysql = require('mysql2');
 const express = require('express');
 const queries = require('./queries');
+const path = require('path');
 require('dotenv').config();
 
 const hostname = '127.0.0.1';
@@ -25,6 +26,8 @@ db.connect((err) => {
 });
 
 const app = express();
+
+app.use('/', express.static(path.join(__dirname, 'static')));
 
 // Create DB
 app.get('/createdb', (req, res) => {
