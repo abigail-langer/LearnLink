@@ -15,7 +15,7 @@ body {
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgb(35, 35, 85);
+  color: rgb(0, 0, 255);
 }
 
 span {
@@ -24,16 +24,133 @@ span {
 }
 
 h6 {
-  font-size: 1.1rem;
-  color: rgb(24, 24, 49);
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(6, 6, 120);
 }
 
+
 /* Navigation */
+nav{
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw 8vw;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+}
+
+nav .navigation ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+nav .navigation ul li{
+    list-style: none;
+    margin-left: 30px;
+}
+
+nav .navigation ul li a{
+    text-decoration: none;
+    color: rgb(6, 34, 112);
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+nav .navigation ul li a:hover{
+    color: rgb(207, 85, 36);
+}
+
 
 /* Home */
+#home {
+    background-color: #f3f8f6;
+    width: 100%;
+    height: 50vh;
+    padding: 22vw 8vw 35vw 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+#home h2 {
+    color: blue;
+    font-size: 2.5rem;
+}
+
+#home p {
+    width:auto;
+    color:#757373;
+    font-size: 0.9rem;
+    line-height: 25px;
+
+}
+
+#home .btn {
+    margin-top: 15px;
+}
+
+#home a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    background-color: #dfd9d9;
+    padding: 1px 10px;
+    font-weight: 400;
+    border-radius: 10px;
+}
+
+#home a.learn {
+    color: #fff;
+    background: rgb(0, 0, 255);
+    transition: 0.3s ease;
+}
+
+#home a.learn:hover {
+    color: rgb(0, 0, 255);
+    background: #fff;
+}
+
+#home a.course {
+    color: #fff;
+    background: rgb(0, 0, 255);
+    transition: 0.3s ease;
+}
+
+#home a.course:hover {
+    color: rgb(0, 0, 255);
+    background: #fff;
+}
 /* features */
+#features {
+    background-color: #f3f8f6;
+    padding: 1vw 8vw 10vw 8vw;
+    text-align: center;
+}
 
+#features .fea-base {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 1rem;
+}
+
+#features .fea-box {
+    background-color: #e6e6e6;
+    text-align: start;
+    padding: 5px 5px;
+
+}
+
+#features .fea-box h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(0, 0, 255);
+}
 /* course */
 
 /* registration */
