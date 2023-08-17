@@ -236,6 +236,44 @@ nav .navigation ul li a:hover{
 
 /* footer */
 
+footer{
+    padding: 2vw;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+}
+
+footer h3 {
+    color:rgb(186, 188, 190);
+    font-size: 16px;;
+    font-weight: 300;
+}
+
+footer .footer-bar ul{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+footer .footer-bar ul li{
+    list-style: none;
+    margin-left: 30px;
+}
+
+footer .footer-bar ul li a{
+    text-decoration: none;
+    color: rgb(133, 135, 139);
+    font-size: 16px;
+    font-weight: 300;
+    transition: 0.3s ease;
+}
+
+footer .footer-bar ul li a:hover{
+    color: rgb(21, 20, 20);
+}
+
 /* About */
 
 /* Blog */
