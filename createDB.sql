@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS subjects;
 CREATE TABLE IF NOT EXISTS subjects (
     id INT AUTO_INCREMENT,
     subject_name VARCHAR(256) UNIQUE NOT NULL,
+    discipline_name VARCHAR(256) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS questions (
