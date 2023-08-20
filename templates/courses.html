@@ -5,6 +5,7 @@
   <title>Learn Link</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
+  <script src="nunjucks.js"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.png">
 </head>
@@ -23,30 +24,17 @@
         </nav>
         <!-- Course List -->
         <section id="course-home">
-            <h3>Math</h3>
+            {% for discipline, discipline_subjects in subjects %}
+                
+            <h3>{{ discipline }}</h3>
             <div class="course-base">
+                {% for subject in discipline_subjects %}
                 <div class="course-btn">
-                    <a class="gen" href="#">Pre Calculus</a>
+                    <a class="gen" href="#">{{ subject }}</a>
                 </div>
-                <div class="course-btn">
-                    <a class="gen" href="#">Calculus AB</a>
-                </div>
-                <div class="course-btn">
-                    <a class="gen" href="#">Calculus BC</a>
-                </div>
+                {% endfor %}
             </div>
-            <h3>Science</h3>
-            <div class="course-base">
-                <div class="course-btn">
-                    <a class="gen" href="#">Biology</a>
-                </div>
-                <div class="course-btn">
-                    <a class="gen" href="#">Physics</a>
-                </div>
-                <div class="course-btn">
-                    <a class="gen" href="#">Chemistry</a>
-                </div>
-            </div>
+            {% endfor %}
         </section>
 
         <!-- Footer -->

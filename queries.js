@@ -27,8 +27,8 @@ function query(sql) {
     }
 }
 
-function addSubject(subject_name) {
-    return query(`INSERT INTO subjects (subject_name) VALUES ("${subject_name}");`);
+function addSubject(subject_name, discipline_name) {
+    return query(`INSERT INTO subjects (subject_name, discipline_name) VALUES ("${subject_name}", "${discipline_name}");`);
 }
 
 function addQuestion(question_content, subject_id) {

@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const express = require('express');
 const queries = require('./queries');
 const path = require('path');
+const nunjucks = require('nunjucks');
 require('dotenv').config();
 
 const hostname = '127.0.0.1';
@@ -27,7 +28,34 @@ db.connect((err) => {
 
 const app = express();
 
+nunjucks.configure('templates', {
+    autoescape: true,
+    express: app
+});
+
 app.use('/', express.static(path.join(__dirname, 'static')));
+
+app.get('/courses.html', (req, res) => {
+
+    queries.query('SELECT * FROM subjects').then(x => {
+        
+        let subjects = {}
+
+        x.forEach(subject => {
+            let discipline = subject['discipline_name'];
+
+            subjects[discipline] == undefined? 
+                subjects[discipline] = [subject['subject_name']] : 
+                subjects[discipline].push(subject['subject_name']);
+        })
+
+        let data = {
+            subjects: subjects
+        }
+
+        res.render('courses.html', data);
+    });
+});
 
 // Create DB
 app.get('/createdb', (req, res) => {
@@ -74,7 +102,7 @@ app.get('/desc', (req, res) => {
 // Add a subject
 app.get('/addSubject', (req, res) => {
 
-    queries.addSubject(req.query.id).then(x => {
+    queries.addSubject(req.query.id, req.query.discipline).then(x => {
         res.send(`Subject ${req.query.id} added`);
     })
 });
