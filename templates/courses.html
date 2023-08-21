@@ -24,13 +24,13 @@
         </nav>
         <!-- Course List -->
         <section id="course-home">
-            {% for discipline, discipline_subjects in subjects %}
+            {% for discipline, discipline_subjects in courses %}
                 
             <h3>{{ discipline }}</h3>
             <div class="course-base">
-                {% for subject in discipline_subjects %}
+                {% for course in discipline_subjects %}
                 <div class="course-btn">
-                    <a class="gen" href="#">{{ subject }}</a>
+                    <a class="gen" href="subjects.html?discipline={{ discipline }}&course={{ course }}">{{ course }}</a>
                 </div>
                 {% endfor %}
             </div>

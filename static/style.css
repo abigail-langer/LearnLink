@@ -338,6 +338,12 @@ footer .footer-bar ul li a:hover{
     background: #e6e6e6;
 }
 
+#course-home h2 {
+    color: blue;
+    font-size: 2.4rem;
+    text-align: center;
+}
+
 #course-home h3 {
     text-align: start;
     font-size: 1.5rem;

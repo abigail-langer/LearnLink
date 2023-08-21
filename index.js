@@ -35,25 +35,51 @@ nunjucks.configure('templates', {
 
 app.use('/', express.static(path.join(__dirname, 'static')));
 
+// courses.html Page
 app.get('/courses.html', (req, res) => {
 
     queries.query('SELECT * FROM subjects').then(x => {
         
-        let subjects = {}
+        let courses = {}
 
         x.forEach(subject => {
             let discipline = subject['discipline_name'];
 
-            subjects[discipline] == undefined? 
-                subjects[discipline] = [subject['subject_name']] : 
-                subjects[discipline].push(subject['subject_name']);
-        })
+            if (courses[discipline] === undefined) {
+                courses[discipline] = [subject['course_name']];
+            }
+            else {
+                !courses[discipline].includes(subject['course_name']) && courses[discipline].push(subject['course_name']);
+            }
+        });
 
         let data = {
-            subjects: subjects
+            courses: courses
         }
 
         res.render('courses.html', data);
+    });
+});
+
+// subjects.html Page
+app.get('/subjects.html', (req, res) => {
+
+    queries.query(`SELECT * FROM subjects WHERE discipline_name = "${req.query.discipline}" AND course_name = "${req.query.course}"`).then(x => {
+        
+        console.log(x);
+        let subjects = []
+        
+        x.forEach(subject => {
+            subjects.push(subject['subject_name']);
+        })
+        
+        console.log(subjects);
+        let data = {
+            course_name: req.query.course,
+            subjects: subjects
+        }
+
+        res.render('subjects.html', data);
     });
 });
 
@@ -102,8 +128,8 @@ app.get('/desc', (req, res) => {
 // Add a subject
 app.get('/addSubject', (req, res) => {
 
-    queries.addSubject(req.query.id, req.query.discipline).then(x => {
-        res.send(`Subject ${req.query.id} added`);
+    queries.addSubject(req.query.subject, req.query.course, req.query.discipline).then(x => {
+        res.send(`Subject ${req.query.subject} added`);
     })
 });
 

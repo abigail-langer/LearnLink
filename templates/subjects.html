@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Learn Link</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <script src="nunjucks.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png">
+</head>
+<body>
+     <!-- Navigation -->
+     <nav>
+        <h6>Logo</h6>
+        <div class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="#">Courses</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Subtopics List -->
+    <section id="course-home">
+        <h2 style="padding-bottom: 7.5%;">{{ course_name }}</h2>
+        <div class="course-base">
+            {% for subject in subjects %}
+            <div class="course-btn">
+                <a class="gen" href="#">{{ subject }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <h3>Copyright © 2023 LearnLink</h3>
+        <div class="footer-bar">
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+
+        // Navaigation Bar
+
+    </script>
+</body>
+</html>
