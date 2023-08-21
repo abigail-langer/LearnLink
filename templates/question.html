@@ -10,8 +10,8 @@
   <link rel="icon" href="favicon.png">
 </head>
 <body>
-     <!-- Navigation -->
-     <nav>
+    <!-- Navigation -->
+    <nav>
         <h6>Logo</h6>
         <div class="navigation">
             <ul>
@@ -22,17 +22,23 @@
             </ul>
         </div>
     </nav>
-    <!-- Subtopics List -->
+    <!-- Course List -->
     <section id="course-home">
-        <h2 style="padding-bottom: 7.5%;">{{ course_name }}</h2>
-        <div class="course-base">
-            {% for subject in subjects %}
-            <div class="course-btn">
-                <a class="gen" href="/question.html?discipline={{ discipline_name }}&course={{ course_name }}&subject={{ subject }}">{{ subject }}</a>
+        <h3>
+            Question #1
+        </h3>
+        <form id="answerForm" action="" method="post" style="height: 8%">
+            <div style="text-align: center;">
+                <label><h2 id="question">{{ question }}</h2></label>
+                <textarea name="answerBox"></textarea> 
+                <button>Send</button>
+                <br>
+                <input type="hidden" name="question_id" value="{{ question_id }}" />
             </div>
-            {% endfor %}
-        </div>
+
+       </form>
     </section>
+
     <!-- Footer -->
     <footer>
         <h3>Copyright © 2023 LearnLink</h3>
@@ -52,4 +58,3 @@
 
     </script>
 </body>
-</html>

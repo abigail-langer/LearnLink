@@ -1,6 +1,7 @@
 const fs = require('fs');
 const mysql = require('mysql2');
 const express = require('express');
+const bodyParser = require('body-parser');
 const queries = require('./queries');
 const path = require('path');
 const nunjucks = require('nunjucks');
@@ -27,6 +28,9 @@ db.connect((err) => {
 });
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 nunjucks.configure('templates', {
     autoescape: true,
@@ -66,7 +70,6 @@ app.get('/subjects.html', (req, res) => {
 
     queries.query(`SELECT * FROM subjects WHERE discipline_name = "${req.query.discipline}" AND course_name = "${req.query.course}"`).then(x => {
         
-        console.log(x);
         let subjects = []
         
         x.forEach(subject => {
@@ -75,12 +78,56 @@ app.get('/subjects.html', (req, res) => {
         
         console.log(subjects);
         let data = {
+            discipline_name: req.query.discipline,
             course_name: req.query.course,
             subjects: subjects
         }
 
         res.render('subjects.html', data);
     });
+});
+
+// question.html Page
+app.get('/question.html', (req, res) => {
+
+    queries.query(`
+        SELECT questions.id, question_content 
+        FROM questions
+        CROSS JOIN question_to_subject ON questions.id = question_to_subject.question_id
+        CROSS JOIN subjects ON question_to_subject.subject_id = subjects.id
+        WHERE discipline_name = "${req.query.discipline}" AND course_name = "${req.query.course}" AND subject_name = "${req.query.subject}"
+    `).then(x => {
+        console.log(x);
+        if (x.length == 0)
+        {
+            res.send("No questions found");
+            return;
+        } 
+        let data = {
+            question: x[0]['question_content'],
+            question_id: x[0]['id']
+        }
+        
+        res.render('question.html', data);
+    });
+});
+
+app.post('/question.html', (req, res) => {
+
+    let data = req.body;
+
+    queries.query(`SELECT question_answer from questions WHERE id = ${data.question_id}`).then(x => {
+        console.log(x);
+        if (x[0]['question_answer'] == data['answerBox'])
+        {
+            res.send('Correct!');
+        }
+        else
+        {
+            res.send(`Incorrect. The right answer is ${x[0].question_answer}`);
+        }
+    })
+
 });
 
 // Create DB
@@ -136,7 +183,7 @@ app.get('/addSubject', (req, res) => {
 // Add a question
 app.get('/addQuestion', (req, res) => {
 
-    Promise.all(queries.addQuestion(req.query.question, req.query.subject_id)).then(x => {
+    Promise.all(queries.addQuestion(req.query.question, req.query.answer, req.query.subject_id)).then(x => {
         res.send('Question Added');
     })
 });

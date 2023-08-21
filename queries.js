@@ -31,9 +31,9 @@ function addSubject(subject_name, course_name, discipline_name) {
     return query(`INSERT INTO subjects (subject_name, course_name, discipline_name) VALUES ("${subject_name}", "${course_name}", "${discipline_name}");`);
 }
 
-function addQuestion(question_content, subject_id) {
+function addQuestion(question_content, question_answer, subject_id) {
     return queryMany([
-        `INSERT INTO questions (id, question_content) VALUES (DEFAULT, "${question_content}");`,
+        `INSERT INTO questions (id, question_content, question_answer) VALUES (DEFAULT, "${question_content}", "${question_answer}");`,
         `INSERT INTO question_to_subject (question_id, subject_id) VALUES (LAST_INSERT_ID(), ${subject_id});`
     ]);
 }

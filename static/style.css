@@ -351,6 +351,22 @@ footer .footer-bar ul li a:hover{
     color: rgb(0, 0, 255);
 }
 
+#course-home textarea {
+    resize: none;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 30%;
+    height: 60%;
+    font-size: large;
+}
+
+#course-home #question {
+    text-align: center;
+    color: black;
+    font-size: 2em;
+}
+
 /* contact */
 
 /* responsive */
