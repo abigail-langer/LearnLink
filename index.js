@@ -89,7 +89,12 @@ app.get('/subjects.html', (req, res) => {
 
 // question.html Page
 app.get('/question.html', (req, res) => {
-
+    
+    if (req.query.discipline == undefined || req.query.course == undefined || req.query.subject == undefined){
+        res.send("Missing Parameter");
+        return;
+    }
+    
     queries.query(`
         SELECT questions.id, question_content 
         FROM questions
@@ -175,6 +180,11 @@ app.get('/desc', (req, res) => {
 // Add a subject
 app.get('/addSubject', (req, res) => {
 
+    if (req.query.subject == undefined || req.query.course == undefined || req.query.discipline == undefined){
+        res.send("Missing Parameter");
+        return;
+    }
+    
     queries.addSubject(req.query.subject, req.query.course, req.query.discipline).then(x => {
         res.send(`Subject ${req.query.subject} added`);
     })
@@ -183,6 +193,11 @@ app.get('/addSubject', (req, res) => {
 // Add a question
 app.get('/addQuestion', (req, res) => {
 
+    if (req.query.question == undefined || req.query.answer == undefined || req.query.subject_id == undefined){
+        res.send("Missing Parameter");
+        return;
+    }
+
     Promise.all(queries.addQuestion(req.query.question, req.query.answer, req.query.subject_id)).then(x => {
         res.send('Question Added');
     })
@@ -190,6 +205,11 @@ app.get('/addQuestion', (req, res) => {
 
 // Log all data of a table
 app.get('/showAllFromTable', (req, res) => {
+
+    if (req.query.tableName == undefined){
+        res.send("Missing Parameter");
+        return;
+    }
 
     queries.query(`SELECT * FROM ${req.query.tableName};`).then(result => {
         console.log(result);
