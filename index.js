@@ -136,6 +136,22 @@ app.post('/question.html', (req, res) => {
 
 });
 
+app.post('/vote', (req, res) => {
+
+    let data = req.body;
+
+    if (data.voteType == 'upvote')    
+    {
+        queries.query(`UPDATE questions SET upvote = upvote+1 WHERE id = ${data.question_id}`);
+    }
+    else
+    {
+        queries.query(`UPDATE questions SET downvote = downvote+1 WHERE id = ${data.question_id}`);
+    }
+
+
+});
+
 // Create DB
 app.get('/createdb', (req, res) => {
 
