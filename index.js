@@ -96,11 +96,12 @@ app.get('/question.html', (req, res) => {
     }
     
     queries.query(`
-        SELECT questions.id, question_content 
+        SELECT questions.id, question_content, upvotes/downvotes AS votes_avg
         FROM questions
         CROSS JOIN question_to_subject ON questions.id = question_to_subject.question_id
         CROSS JOIN subjects ON question_to_subject.subject_id = subjects.id
         WHERE discipline_name = "${req.query.discipline}" AND course_name = "${req.query.course}" AND subject_name = "${req.query.subject}"
+        ORDER BY votes_avg DESC LIMIT 1
     `).then(x => {
         console.log(x);
         if (x.length == 0)
@@ -199,7 +200,7 @@ app.get('/addQuestion', (req, res) => {
     }
 
     queries.query(`SELECT * FROM questions WHERE question_content = "${req.query.question}"`).then(x => {
-        if (x[0].length != 0) {
+        if (x.length != 0) {
             res.send("Question already exists");
             return;
         }
