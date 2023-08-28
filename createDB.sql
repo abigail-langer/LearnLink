@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS subjects (
 );
 CREATE TABLE IF NOT EXISTS questions (
     id INT AUTO_INCREMENT,
-    question_content TEXT NOT NULL,
+    question_content UNIQUE TEXT NOT NULL,
     question_answer TEXT NOT NULL,
     PRIMARY KEY (id)
 );
