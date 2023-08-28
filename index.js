@@ -198,9 +198,16 @@ app.get('/addQuestion', (req, res) => {
         return;
     }
 
-    Promise.all(queries.addQuestion(req.query.question, req.query.answer, req.query.subject_id)).then(x => {
-        res.send('Question Added');
-    })
+    queries.query(`SELECT * FROM questions WHERE question_content = "${req.query.question}"`).then(x => {
+        if (x[0].length != 0) {
+            res.send("Question already exists");
+            return;
+        }
+
+        Promise.all(queries.addQuestion(req.query.question, req.query.answer, req.query.subject_id)).then(x => {
+            res.send('Question Added');
+        });
+    });
 });
 
 // Log all data of a table
