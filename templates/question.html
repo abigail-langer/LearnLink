@@ -35,8 +35,31 @@
                 <br>
                 <input type="hidden" name="question_id" value="{{ question_id }}" />
             </div>
-
        </form>
+
+        <iframe name="noneIframe" style="display: none;"></iframe>
+        
+        <form action="/vote" method="post" style="height: 8%" target="noneIframe">
+            <div style="text-align: center;">
+                <input type="image" style="height: 1%" src="/upvote.png"/>
+                <input type="hidden" name="voteType" value="upvote" />
+                <input type="hidden" name="question_id" value="{{ question_id }}" />
+            </div>
+            <h2>
+                {{ upvotes_count }}
+            </h2>
+        </form>
+        
+        <form action="/vote" method="post" style="height: 8%" target="noneIframe">
+            <div style="text-align: center;">
+                <input type="image" style="height: 1%" src="/downvote.png"/>
+                <input type="hidden" name="voteType" value="downvote" />
+                <input type="hidden" name="question_id" value="{{ question_id }}" />
+            </div>
+            <h2>
+                {{ downvotes_count }}
+            </h2>
+        </form>
     </section>
     
 

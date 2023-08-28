@@ -96,12 +96,12 @@ app.get('/question.html', (req, res) => {
     }
     
     queries.query(`
-        SELECT questions.id, question_content, upvotes/downvotes AS votes_avg
+        SELECT questions.id, question_content, upvotes, downvotes, upvotes/downvotes AS votes_avg
         FROM questions
         CROSS JOIN question_to_subject ON questions.id = question_to_subject.question_id
         CROSS JOIN subjects ON question_to_subject.subject_id = subjects.id
         WHERE discipline_name = "${req.query.discipline}" AND course_name = "${req.query.course}" AND subject_name = "${req.query.subject}"
-        ORDER BY votes_avg DESC LIMIT 1
+        ORDER BY votes_avg DESC
     `).then(x => {
         console.log(x);
         if (x.length == 0)
@@ -110,6 +110,8 @@ app.get('/question.html', (req, res) => {
             return;
         } 
         let data = {
+            upvotes_count: x[0]['upvotes'],
+            downvotes_count: x[0]['downvotes'],
             question: x[0]['question_content'],
             question_id: x[0]['id']
         }
@@ -142,11 +144,11 @@ app.post('/vote', (req, res) => {
 
     if (data.voteType == 'upvote')    
     {
-        queries.query(`UPDATE questions SET upvote = upvote+1 WHERE id = ${data.question_id}`);
+        queries.query(`UPDATE questions SET upvotes = upvotes+1 WHERE id = ${data.question_id}`);
     }
     else
     {
-        queries.query(`UPDATE questions SET downvote = downvote+1 WHERE id = ${data.question_id}`);
+        queries.query(`UPDATE questions SET downvotes = downvotes+1 WHERE id = ${data.question_id}`);
     }
 
 

@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS questions (
     id INT AUTO_INCREMENT,
     question_content TEXT NOT NULL,
     question_answer TEXT NOT NULL,
-    upvotes INT,
-    downvotes INT,
+    upvotes INT DEFAULT 0,
+    downvotes INT DEFAULT 0,
     PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS question_to_subject (
